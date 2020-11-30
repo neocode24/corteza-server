@@ -72,6 +72,10 @@ func dd(ctx context.Context, suite string) ([]resource.Interface, error) {
 }
 
 func encode(ctx context.Context, s store.Storer, nn []resource.Interface) error {
+	return encodeC(ctx, s, nn, nil)
+}
+
+func encodeC(ctx context.Context, s store.Storer, nn []resource.Interface, cfg *es.EncoderConfig) error {
 	se := es.NewStoreEncoder(s, nil)
 	bld := envoy.NewBuilder(se)
 	g, err := bld.Build(ctx, nn...)
