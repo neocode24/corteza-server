@@ -149,7 +149,7 @@ func (svc *sink) ProcessRequest(w http.ResponseWriter, r *http.Request) {
 	)
 
 	// capture error from request handling and process functions
-	err := func() *errors.Error {
+	err := func() error {
 		defer r.Body.Close()
 		srup, err := svc.handleRequest(r)
 		if err != nil {
